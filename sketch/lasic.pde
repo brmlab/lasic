@@ -8,6 +8,8 @@ int LaserPIN = 14;
 int Ypojezd = 19;
 int Xpojezd = 18;
 
+const int stepperY_factor = 3;
+
 unsigned posX = 0;
 unsigned posY = 0;
 
@@ -149,7 +151,7 @@ void ExeCmd(char *InCmd){
 
     case 2:
       stepperY.setSpeed(MotorSpeed);
-      stepperY.step(MotorSteps * 3);
+      stepperY.step(MotorSteps * stepperY_factor);
       posY += MotorSteps;
       break;
 
@@ -310,7 +312,7 @@ void line(int x1, int y1, int x2, int y2)
     stepperX.step(1);
     posX++;
   } else {
-    stepperY.step(1);
+    stepperY.step(stepperY_factor);
     posY++;
   }
 }
@@ -337,7 +339,7 @@ void linebtr(int x1, int y1, int x2, int y2)
       //			setpixel(x1, y1, color);
       if(e >= 0) {
         y1 += iny;
-        stepperY.step(iny * 3);
+        stepperY.step(iny * stepperY_factor);
         e-= dx;
       }
       e += dy; 
@@ -358,7 +360,7 @@ void linebtr(int x1, int y1, int x2, int y2)
       }
       e += dx; 
       y1 += iny; 
-      stepperY.step(iny * 3); 
+      stepperY.step(iny * stepperY_factor); 
     }
   }
 
@@ -378,7 +380,7 @@ void XYReset(){
     stepperY.step(-1);
   }
   stepperY.setSpeed(150);
-  stepperY.step(1600);
+  stepperY.step(600 * stepperY_factor);
 
   stepperX.setSpeed(75);
   while (digitalRead(Xpojezd)==true){
