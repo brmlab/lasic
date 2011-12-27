@@ -337,7 +337,7 @@ void linebtr(int x1, int y1, int x2, int y2)
       //			setpixel(x1, y1, color);
       if(e >= 0) {
         y1 += iny;
-        stepperY.step(iny);
+        stepperY.step(iny * 3);
         e-= dx;
       }
       e += dy; 
@@ -358,7 +358,7 @@ void linebtr(int x1, int y1, int x2, int y2)
       }
       e += dx; 
       y1 += iny; 
-      stepperY.step(iny); 
+      stepperY.step(iny * 3); 
     }
   }
 
