@@ -1,6 +1,6 @@
 #include <Stepper.h>
 
-char InCmd[16];
+char InCmd[32];
 byte InCmdIndex = 0;
 byte InByte = 0;
 unsigned long lastTime = 0;
