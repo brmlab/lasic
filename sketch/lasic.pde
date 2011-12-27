@@ -277,7 +277,7 @@ void ExeCmd(char *InCmd){
 
     stepperX.setSpeed(MotorSpeed);
     stepperY.setSpeed(MotorSpeed);
-    line(posX, posY, toX, toY);
+    linebtr(posX, posY, toX, toY);
     Serial.println(SeqID, DEC);
     break;
 
@@ -366,8 +366,8 @@ void linebtr(int x1, int y1, int x2, int y2)
 
   posX = x1;
   posY = y1;
-  Serial.println(posX, DEC);
-  Serial.println(posY, DEC);
+  //Serial.println(posX, DEC);
+  //Serial.println(posY, DEC);
 }
 
 void XYReset(){
