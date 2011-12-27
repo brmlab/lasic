@@ -55,7 +55,7 @@ has 'port' => (is => 'rw', isa => 'Device::SerialPort');
 
 The tty device filehandle. Avoid using directly.
 =cut
-has 'fd' => (is => 'rw', isa => 'Device::SerialPort');
+has 'fd' => (is => 'rw', isa => 'FileHandle');
 
 =back
 
