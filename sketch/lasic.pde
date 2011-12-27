@@ -7,6 +7,8 @@ unsigned long lastTime = 0;
 int LaserPIN = 14;
 int Ypojezd = 19;
 int Xpojezd = 18;
+int FDir = 16;
+int FStep = 17;
 
 const int stepperY_factor = 3;
 
@@ -29,6 +31,10 @@ void setup() {
   digitalWrite(Ypojezd, HIGH);
   pinMode(Xpojezd, INPUT);
   digitalWrite(Xpojezd, HIGH);
+    pinMode(FDir, OUTPUT);
+  digitalWrite(FDir, LOW);
+  pinMode(FStep, OUTPUT);
+  digitalWrite(FStep, LOW);
 }
 
 void loop() {
@@ -224,6 +230,14 @@ void ExeCmd(char *InCmd){
       XYReset();
       Serial.println(SeqID, DEC); 
       break;
+    case 2:
+      FocusUp();
+      Serial.println(SeqID, DEC); 
+      break;
+    case 3:
+      FocusDown();
+      Serial.println(SeqID, DEC); 
+      break;
     default:
       Serial.print("Unknow Command: ");
       Serial.println(SCommand,DEC );
@@ -403,6 +417,24 @@ void PrintHelp(){
 
 }
 
+void FocusDown(){
+  digitalWrite(FDir, LOW);
+  delay(1);
+  digitalWrite(FStep, HIGH);
+  delay(1);
+  digitalWrite(FStep, LOW);
+  delay(1);
+}
+
+void FocusUp(){
+  digitalWrite(FDir, HIGH);
+  delay(1);
+  digitalWrite(FStep, HIGH);
+  delay(1);
+  digitalWrite(FStep, LOW);
+  delay(1);
+  digitalWrite(FDir, LOW);
+}
 
 
 
