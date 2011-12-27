@@ -41,11 +41,9 @@ void loop() {
     if (InByte == 10 || InByte == 13 ) {
       //Serial.println(sizeof(InCmd),DEC);
       ExeCmd(InCmd);
-      /*
-			for (InCmdIndex++; InCmdIndex>0; InCmdIndex--) {
-       				InCmd[InCmdIndex] = 0;
-       			}
-       */
+      for (InCmdIndex++; InCmdIndex>0; InCmdIndex--) {
+	      InCmd[InCmdIndex] = 0;
+      }
       InCmdIndex = 0;
 
     }
