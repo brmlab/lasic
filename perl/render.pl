@@ -14,3 +14,4 @@ $lasic->reset();
 
 my $pbm = Brm::Lasic::PBM->new(lasic => $lasic, file => $ARGV[0]);
 $pbm->render();
+$lasic->move(0, 0);
