@@ -91,6 +91,11 @@ sub BUILD {
 	$self->port->stopbits(1);
 	$self->port->handshake("none");
 	$self->port->write_settings();
+	$self->port->read_const_time(500);
+	# Yes, output record separator != input record separator!
+	$self->port->output_record_separator("\n");
+	$self->port->are_match("\r\n");
+	sleep(3);
 }
 
 =item B<reset>
@@ -168,10 +173,13 @@ sub msg {
 	$self->seqid($self->seqid + 1);
 
 	my $fd = $self->fd();
-	print $fd join(' ', @args)."\r\n";
-	my $msg = <$fd>;
-	chomp $msg;
-	print "(rep: $msg)\n";
+	# print join(' ', @args)."\n";
+	print $fd join(' ', @args);
+	my $msg;
+	do {
+		$msg = <$fd>;
+	} while (not $msg);
+	# print "(rep: $msg)\n";
 }
 
 =back
