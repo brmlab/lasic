@@ -57,6 +57,12 @@ The tty device filehandle. Avoid using directly.
 =cut
 has 'fd' => (is => 'rw', isa => 'FileHandle');
 
+=item B<seqid>
+
+Sequence id for commands. Just for internal use.
+=cut
+has 'seqid' => (is => 'rw', isa => 'Num', default => 0);
+
 =back
 
 =head2 METHODS
@@ -158,7 +164,8 @@ sub msg {
 	my $self = shift;
 
 	my (@args) = @_;
-	push @args, 1;
+	push @args, 1 + $self->seqid % 254;
+	$self->seqid($self->seqid + 1);
 
 	my $fd = $self->fd();
 	print $fd join(' ', @args)."\r\n";
