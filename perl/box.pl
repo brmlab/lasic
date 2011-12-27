@@ -13,12 +13,12 @@ print "reset\n";
 $lasic->reset();
 sleep 1;
 
-print "focus -2\n";
-$lasic->focus(-2);
-sleep 1;
-print "focus 2\n";
-$lasic->focus(2);
-sleep 1;
+#print "focus -2\n";
+#$lasic->focus(-2);
+#sleep 1;
+#print "focus 2\n";
+#$lasic->focus(2);
+#sleep 1;
 
 print "laser on\n";
 $lasic->laser_on();
