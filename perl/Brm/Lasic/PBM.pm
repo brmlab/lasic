@@ -35,7 +35,7 @@ Render a bitmap picture from PBM file using Brm::Lasic lasercutter.
 
 Lasercutter instance.
 =cut
-#has 'lasic' => (is => 'ro', isa => 'Brm::Lasic', required => 1);
+has 'lasic' => (is => 'ro', isa => 'Brm::Lasic', required => 1);
 
 =item B<file>
 
