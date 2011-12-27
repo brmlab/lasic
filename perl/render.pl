@@ -10,7 +10,7 @@ use Brm::Lasic;
 use Brm::Lasic::PBM;
 
 my $lasic = Brm::Lasic->new(dev => '/dev/ttyUSB0');
-$lasic->reset();
+# $lasic->reset();
 
 my $pbm = Brm::Lasic::PBM->new(lasic => $lasic, file => $ARGV[0]);
 $pbm->render();
