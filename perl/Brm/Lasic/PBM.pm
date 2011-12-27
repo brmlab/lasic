@@ -48,7 +48,7 @@ has 'file' => (is => 'ro', isa => 'Str', required => 1);
 Length of etching per pixel in milliseconds;
 a reasonable default is provided but this depends on the material.
 =cut
-has 'pixeltime' => (is => 'ro', isa => 'Num', default => 200, required => 1);
+has 'pixeltime' => (is => 'ro', isa => 'Num', default => 150, required => 1);
 
 =back
 
