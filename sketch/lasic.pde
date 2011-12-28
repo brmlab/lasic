@@ -35,6 +35,9 @@ void setup() {
   digitalWrite(FDir, LOW);
   pinMode(FStep, OUTPUT);
   digitalWrite(FStep, LOW);
+
+  stepperX.step(10);
+  stepperX.step(-10);
 }
 
 void loop() {
