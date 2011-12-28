@@ -8,6 +8,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
 #        self.LD = LD
         self.scale = scale
     	self.speed = 5
+	self.subshift = 0
 
     def startElement(self, name, attrs):
         if name == 'path':
@@ -46,9 +47,9 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     nx = x+float(delta[0])*self.scale
                     ny = y+float(delta[1])*self.scale
                     print "l 0 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(y), "2"
+                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
-                    print "v", self.speed, math.trunc(nx), math.trunc(ny), "3"
+                    print "v", self.speed, round(nx+self.subshift), round(ny+self.subshift), "3"
 #                    self.LD.draw_line(x, y, nx, ny)
 
                     x,y = nx,ny
@@ -57,17 +58,17 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     nx = float(delta[0])*self.scale
                     ny = float(delta[1])*self.scale
                     print "l 0 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(y), "2"
+                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
-                    print "v", self.speed, math.trunc(nx), math.trunc(ny), "3"
+                    print "v", self.speed, round(nx+self.subshift), round(ny+self.subshift), "3"
  #                   self.LD.draw_line(x, y, nx, ny)
                     x,y = nx,ny
                 elif cmd == 'z' or cmd == 'Z':
                     i -= 1
                     print "l 0 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(y), "2"
+                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
-                    print "v", self.speed, math.trunc(x0), math.trunc(y0), "3"
+                    print "v", self.speed, round(x0+self.subshift), round(y0+self.subshift), "3"
   #                  self.LD.draw_line(x, y, x0, y0)
                     x,y = x0,y0
                 elif cmd == 'h':
@@ -75,36 +76,36 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     nx = x+float(delta)*self.scale
    #                 self.LD.draw_line(x, y, nx, y)
                     print "l 0 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(y), "2"
+                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
-                    print "v", self.speed, math.trunc(nx), math.trunc(y), "3"
+                    print "v", self.speed, round(nx+self.subshift), round(y+self.subshift), "3"
                     x = nx
                 elif cmd == 'H':
                     delta = tokens[i]
                     nx = float(delta)*self.scale
     #                self.LD.draw_line(x, y, nx, y)
                     print "l 0 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(y), "2"
+                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
-                    print "v", self.speed, math.trunc(nx), math.trunc(y), "3"
+                    print "v", self.speed, round(nx+self.subshift), round(y+self.subshift), "3"
                     x = nx
                 elif cmd == 'v':
                     delta = tokens[i]
                     ny = y+float(delta)*self.scale
      #               self.LD.draw_line(x, y, x, ny)
                     print "l 0 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(y), "2"
+                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(ny), "3"
+                    print "v", self.speed, round(x+self.subshift), round(ny+self.subshift), "3"
                     y = ny
                 elif cmd == 'V':
                     delta = tokens[i]
                     ny = float(delta)*self.scale
       #              self.LD.draw_line(x, y, x, ny)
                     print "l 0 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(y), "2"
+                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
-                    print "v", self.speed, math.trunc(x), math.trunc(ny), "3"
+                    print "v", self.speed, round(x+self.subshift), round(ny+self.subshift), "3"
                     y = ny
                 elif cmd == 'c':
                     ctrl1 = tokens[i].split(',')
@@ -171,9 +172,9 @@ class SVGHandler(xml.sax.handler.ContentHandler):
 #                self.LD.set_color(color)
 #            self.LD.draw_line(x1,y1,x2,y2)
             print "l 0 1"
-            print "v", self.speed, math.trunc(x1), math.trunc(y1), "2"
+            print "v", self.speed, round(x1+self.subshift), round(y1+self.subshift), "2"
             print "l 254 1"
-            print "v", self.speed, math.trunc(x2), math.trunc(y2), "3"
+            print "v", self.speed, round(x2+self.subshift), round(y2+self.subshift), "3"
 
 class SvgProcessor():
 
