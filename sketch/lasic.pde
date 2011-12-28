@@ -394,14 +394,14 @@ void XYReset(){
     stepperY.step(-1);
   }
   stepperY.setSpeed(150);
-  stepperY.step(600 * stepperY_factor);
+  stepperY.step(200 * stepperY_factor);
 
   stepperX.setSpeed(75);
   while (digitalRead(Xpojezd)==true){
     stepperX.step(-1);
   }
   stepperX.setSpeed(150);
-  stepperX.step(600);
+  stepperX.step(200);
 
 }
 
