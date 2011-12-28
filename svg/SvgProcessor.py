@@ -41,7 +41,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     x = float(delta[0])*self.scale
                     y = float(delta[1])*self.scale
                     x0,y0 = x,y
-                    cmd = 'l'
+                    cmd = 'L'
                 elif cmd == 'l':
                     delta = tokens[i].split(',')
                     nx = x+float(delta[0])*self.scale
