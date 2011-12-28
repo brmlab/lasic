@@ -7,10 +7,6 @@ use strict;
 
 use lib qw(.);
 use Brm::Lasic;
-use Brm::Lasic::PBM;
-
-my $lasic = Brm::Lasic->new(dev => '/dev/ttyUSB0');
-# $lasic->reset();
 
 open my $fd, '-|', '../svg/showsvg.py', $ARGV[0] or die "showsvg.py: $!";
 my @cmd = <$fd>;
@@ -31,8 +27,11 @@ foreach (@cmd) {
 	print $plot "$c[2] $c[3]\n";
 }
 close $plot;
-print "If the plot looked wrong, press Ctrl-C now! Waiting 5 seconds.\n";
-sleep 5;
+print "If the plot looked wrong, press Ctrl-C now! Waiting for a few seconds.\n";
+sleep 3;
+
+my $lasic = Brm::Lasic->new(dev => '/dev/ttyUSB0');
+# $lasic->reset();
 
 foreach (@cmd) {
 	$lasic->msg(@$_);
