@@ -90,6 +90,7 @@ sub BUILD {
 	$self->port->parity("none");
 	$self->port->stopbits(1);
 	$self->port->handshake("none");
+	$self->port->stty_icanon(0);
 	$self->port->write_settings();
 	$self->port->read_const_time(500);
 	# Yes, output record separator != input record separator!
@@ -177,9 +178,10 @@ sub msg {
 	print $fd join(' ', @args);
 	my $msg;
 	do {
-		$msg = <$fd>;
+		# $msg = <$fd> tends to induce writes stuck in the kernel?!
+		$msg = $self->port()->lookfor(1);
 	} while (not $msg);
-	# print "(rep: $msg)\n";
+	# print "\t(rep: $msg)\n";
 }
 
 =back
