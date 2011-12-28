@@ -7,6 +7,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
         xml.sax.handler.ContentHandler.__init__(self)
 #        self.LD = LD
         self.scale = scale
+	self.bspeed = 20
     	self.speed = 5
 	self.subshift = 0
 
@@ -47,7 +48,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     nx = x+float(delta[0])*self.scale
                     ny = y+float(delta[1])*self.scale
                     print "l 0 1"
-                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
+                    print "v", self.bspeed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
                     print "v", self.speed, round(nx+self.subshift), round(ny+self.subshift), "3"
 #                    self.LD.draw_line(x, y, nx, ny)
@@ -58,7 +59,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     nx = float(delta[0])*self.scale
                     ny = float(delta[1])*self.scale
                     print "l 0 1"
-                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
+                    print "v", self.bspeed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
                     print "v", self.speed, round(nx+self.subshift), round(ny+self.subshift), "3"
  #                   self.LD.draw_line(x, y, nx, ny)
@@ -66,7 +67,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                 elif cmd == 'z' or cmd == 'Z':
                     i -= 1
                     print "l 0 1"
-                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
+                    print "v", self.bspeed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
                     print "v", self.speed, round(x0+self.subshift), round(y0+self.subshift), "3"
   #                  self.LD.draw_line(x, y, x0, y0)
@@ -76,7 +77,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     nx = x+float(delta)*self.scale
    #                 self.LD.draw_line(x, y, nx, y)
                     print "l 0 1"
-                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
+                    print "v", self.bspeed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
                     print "v", self.speed, round(nx+self.subshift), round(y+self.subshift), "3"
                     x = nx
@@ -85,7 +86,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     nx = float(delta)*self.scale
     #                self.LD.draw_line(x, y, nx, y)
                     print "l 0 1"
-                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
+                    print "v", self.bspeed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
                     print "v", self.speed, round(nx+self.subshift), round(y+self.subshift), "3"
                     x = nx
@@ -94,7 +95,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     ny = y+float(delta)*self.scale
      #               self.LD.draw_line(x, y, x, ny)
                     print "l 0 1"
-                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
+                    print "v", self.bspeed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
                     print "v", self.speed, round(x+self.subshift), round(ny+self.subshift), "3"
                     y = ny
@@ -103,7 +104,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
                     ny = float(delta)*self.scale
       #              self.LD.draw_line(x, y, x, ny)
                     print "l 0 1"
-                    print "v", self.speed, round(x+self.subshift), round(y+self.subshift), "2"
+                    print "v", self.bspeed, round(x+self.subshift), round(y+self.subshift), "2"
                     print "l 254 1"
                     print "v", self.speed, round(x+self.subshift), round(ny+self.subshift), "3"
                     y = ny
@@ -172,7 +173,7 @@ class SVGHandler(xml.sax.handler.ContentHandler):
 #                self.LD.set_color(color)
 #            self.LD.draw_line(x1,y1,x2,y2)
             print "l 0 1"
-            print "v", self.speed, round(x1+self.subshift), round(y1+self.subshift), "2"
+            print "v", self.bspeed, round(x1+self.subshift), round(y1+self.subshift), "2"
             print "l 254 1"
             print "v", self.speed, round(x2+self.subshift), round(y2+self.subshift), "3"
 
