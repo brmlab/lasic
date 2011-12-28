@@ -44,25 +44,24 @@ void loop() {
   while(Serial.available()) {
     lastTime = millis();
     InByte = Serial.read();
-    if (InCmdIndex >= sizeof(InCmd)){
-      InCmdIndex = 0;
-      Serial.println("INPUT COMMAND OVERFLOW");
-    } 
 
     if (InByte == 10 || InByte == 13 ) {
       //Serial.println(sizeof(InCmd),DEC);
+      InCmd[InCmdIndex] = 0;
       ExeCmd(InCmd);
-      for (InCmdIndex++; InCmdIndex>0; InCmdIndex--) {
+      for (; InCmdIndex>0; InCmdIndex--) {
 	      InCmd[InCmdIndex] = 0;
       }
       InCmdIndex = 0;
-
     }
     else{
       InCmd[InCmdIndex++] = InByte;
+      if (InCmdIndex >= sizeof(InCmd)){
+        InCmdIndex = 0;
+        Serial.println("INPUT COMMAND OVERFLOW");
+      }
     }//		Serial.println(InCmdIndex, DEC);
   }
-
 
   if ( (lastTime + 15000) < millis() ) {
     digitalWrite(LaserPIN, LOW);
